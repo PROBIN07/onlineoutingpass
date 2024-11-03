@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>외출증 발급 성공!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #f6f5f7;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            font-family: 'Noto Sans KR', sans-serif;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 세로 중앙 정렬을 위해 100vh 추가 */
+            overflow-x: auto;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+                0 10px 10px rgba(0, 0, 0, 0.22);
+            position: relative;
+            overflow: hidden;
+            width: 500px;
+            max-width: 100%;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+            
+        h1 {
+            color: #ffc400;
+            text-align: center;
+            font-weight: bold;
+        }
+        h2 {
+            text-align: center;
+        }
+        h3 {
+            text-align: center;
+            font-weight: bold;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+        @keyframes blink-effect {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .blink {
+            animation: blink-effect 1s step-end infinite;
+            color: #ff0000;
+        }
+        .container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .container::-webkit-scrollbar-thumb {
+            background: #999;
+            border-radius: 8px;
+        }
+
+        .container::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+        button {
+            border: 1px solid #d1d1d1;
+            background-color: #d1d1d1;
+            color: #fff;
+            height: 40px;
+            width: 40px;
+            border-radius: 100px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0 auto;
+            margin-right: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>포산고등학교 외출증</h1>
+            <button id="share-button">공유</button>
+        </div>
+        <br>
+        <h2>
+            학반 : {{ ban }}<br>
+            이름 : {{ name }}<br>
+            발급일 : {{ date }}<br>
+            사유 : {{ reason }}<br>
+            유효 기간 : {{ expiry_date }}<br>
+            발급 교사 : {{ teacher }}<br>
+        </h2>
+        <br>
+        <h3>
+            교복, 체육복, 생활복, 운동화 착용 필수!<br>
+            미착용시, 외출 불가
+        </h3>
+        <br>
+        <h3 class="blink">이 글씨가 깜빡거려야 합니다!</h3>
+        <img src="{{ url_for('static', filename=name+'_outing_pass.png') }}" alt="Outing Pass QR Code">
+    </div>
+</body>
+<script>
+    // "공유" 버튼을 클릭했을 때 실행되는 함수
+    document.getElementById('share-button').addEventListener('click', function () {
+        // 현재 페이지의 URL 가져오기
+        var currentURL = window.location.href;
+        // 외출증을 공유하는 메시지 생성
+        var shareMessage = '포산고등학교 외출증을 확인하세요: ' + currentURL;
+        // 공유하기 기능 실행
+        if (navigator.share) {
+            navigator.share({
+                title: '포산고등학교 외출증',
+                text: shareMessage,
+                url: currentURL
+            })
+            .then(() => console.log('성공적으로 공유'))
+            .catch((error) => console.error('공유 실패:', error));
+        } else {
+            alert('이 브라우저에서는 공유 기능을 지원하지 않습니다.');
+        }
+    });
+</script>
+</html>

@@ -3,9 +3,15 @@ import qrcode
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 import os
+import uuid
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 
+def generate_outing_pass_url(student_name, date, reason, expiry_date, teacher, ban):
+    unique_id = str(uuid.uuid4())  # 고유한 UUID 생성
+    url = f"/outing_pass/{unique_id}/{student_name}/{date}/{reason}/{expiry_date}/{teacher}/{ban}"
+    return url
+    
 def create_table():
     conn = sqlite3.connect('outing_passes.db')
     cursor = conn.cursor()

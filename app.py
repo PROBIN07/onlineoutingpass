@@ -2,6 +2,7 @@ import sqlite3
 import qrcode
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
+import os
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 
@@ -80,5 +81,5 @@ def create_outing_pass():
 def display_outing_pass(name, date, reason, expiry_date, teacher, ban):
     return render_template('display_outing_pass.html', name=name, date=date, reason=reason, expiry_date=expiry_date, teacher=teacher, ban=ban)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))

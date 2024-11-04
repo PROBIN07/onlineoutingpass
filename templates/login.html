@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>로그인 - 포산고등학교 외출관리시스템</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 기존 CSS 스타일과 동일하게 설정 */
+        body, html {
+            background: #f6f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+                0 10px 10px rgba(0, 0, 0, 0.22);
+            width: 780px;
+            max-width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+        input {
+            background-color: #eee;
+            border: none;
+            padding: 12px 15px;
+            margin: 8px 0;
+            width: 100%; /* 모든 입력 필드의 너비를 100%로 설정 */
+            max-width: 290px; /* 버튼의 고정 너비와 동일하게 설정 */
+            box-sizing: border-box; /* 패딩과 보더를 포함하여 크기 계산 */
+        }
+        button {
+            border: 1px solid #ffc400;
+            background-color: #ffc400;
+            color: #fff;
+            padding: 12px 45px;
+            margin-top: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%; /* 버튼의 너비를 100%로 설정 */
+            max-width: 290px; /* 고정 너비 설정 */
+            box-sizing: border-box; /* 패딩과 보더를 포함하여 크기 계산 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>로그인</h1>
+        <form action="/login" method="post">
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <button type="submit">로그인</button>
+        </form>
+        <p>계정이 없으신가요? <a href="/register">회원가입</a></p>
+    </div>
+</body>
+</html>

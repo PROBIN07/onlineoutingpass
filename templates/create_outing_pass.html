@@ -52,7 +52,6 @@
             flex-direction: column;
             position: relative;
             text-align: center;
-
         }
 
         h1 {
@@ -90,7 +89,7 @@
 
         label {
             font-weight: bold;
-            text-align: center; /* Center-align text within labels */
+            text-align: center;
         }
 
         input {
@@ -99,22 +98,26 @@
             padding: 12px 15px;
         }
 
+        input[readonly] {
+            background-color: #ddd; /* 회색 배경색 */
+            color: #999; /* 회색 텍스트 */
+        }
+
         button {
             border: 1px solid #ffc400;
             background-color: #ffc400;
             color: #fff;
             font-weight: bold;
-            padding: 12px 0; /* 가로 패딩만 지정 */
-            width: 290px; /* 버튼의 고정 너비 설정 */
+            padding: 12px 0;
+            width: 290px;
             font-family: 'Noto Sans KR', sans-serif;
-            text-align: center; /* 텍스트를 가로 중앙 정렬 */
+            text-align: center;
         }
 
         .button-container {
             display: flex;
-            justify-content: space-between; /* 버튼 사이의 간격을 균등하게 분배합니다. */
+            justify-content: space-between;
         }
-
     </style>
 </head>
 
@@ -145,7 +148,7 @@
                 </div>
                 <div class="form-group">
                     <label for="teacher">발급 교사</label>
-                    <input type="text" name="teacher" required>
+                    <input type="text" name="teacher" value="{{ username }}" readonly>
                 </div>
                 <p></p>
                 <div class="form-group">
